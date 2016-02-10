@@ -2,7 +2,7 @@ On a new system:
 ------------------
 
     cd /opt
-    su root -c "apt-get update && apt-get install sudo git && adduser $USER sudo"
+    su root -c "apt-get update && apt-get install sudo git lsb-release && adduser $USER sudo"
     # log-out and back-in
     sudo su -c "git clone https://github.com/benwah/setup_script.git /opt/setup_script && chown -R $USER:$USER /opt/setup_script"
     cd /opt/setup_script

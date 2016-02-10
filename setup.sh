@@ -5,6 +5,7 @@ set -e
 OPTIND=1
 SETUP_DIR=$PWD
 HOME_DIR=$HOME
+OS=$(lsb_release -si)
 
 skip_install_packages=0
 no_x=0
@@ -69,34 +70,37 @@ no_x_packages=(
 
 install_packages() {
     sudo apt-get update && sudo apt-get install -y ${required_packages[@]}
-    sudo add-apt-repository contrib
-    sudo add-apt-repository non-free
+
+    if [ -eq $OS "Debian" ]; then
+    	sudo add-apt-repository contrib
+    	sudo add-apt-repository non-free
+    fi
 
     if [ $no_x -eq "0" ]; then
-	packages="${base_packages[@]} ${x_packages[@]}"
+    	packages="${base_packages[@]} ${x_packages[@]}"
     else
-	packages="${base_packages[@]} ${no_x_packages[@]}"
+    	packages="${base_packages[@]} ${no_x_packages[@]}"
     fi
 
     if [ $no_ruby -eq "0" ]; then
-	packages="${packages[@]} ${ruby_deps[@]}"
+    	packages="${packages[@]} ${ruby_deps[@]}"
     fi
 
     if [ $no_python -eq "0" ]; then
-	packages="${packages[@]} ${python_deps[@]}"
+    	packages="${packages[@]} ${python_deps[@]}"
     fi
 
     if [ $no_docker -eq "0" ]; then
-	sudo apt-key adv --keyserver hkp://eu.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
-	echo "deb https://apt.dockerproject.org/repo debian-jessie main" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-	packages="${packages[@]} docker-engine"
-	sudo apt-get update
+    	sudo apt-key adv --keyserver hkp://eu.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
+    	echo "deb https://apt.dockerproject.org/repo debian-jessie main" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+    	packages="${packages[@]} docker-engine"
+    	sudo apt-get update
     fi
 
     sudo apt-get update && sudo apt-get install -y ${packages[@]}
 
     if [ $no_docker -eq "0" ]; then
-	sudo service docker start
+	sudo service docker start>&1 || true
     fi
 }
 
