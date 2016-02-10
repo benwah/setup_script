@@ -163,17 +163,16 @@ install_docker_compose() {
 }
 
 get_emacs_config() {
-    mkdir -p $HOME/.emacs.d/bin/
-
-    if [ ! -e "$HOME/.emacs.d/bin/pychecker.sh" ]; then
-	curl https://raw.githubusercontent.com/reinout/tools/f8d84f043e53c1dfc1e452cfaf00d3f831c9af7e/shell/pychecker.sh > $HOME/.emacs.d/bin/pychecker.sh
-	chmod +x $HOME/.emacs.d/bin/pychecker.sh
-    fi
-
     if [ ! -d "$HOME/.emacs.d" ]; then
 	git clone https://github.com/benwah/.emacs.d.git $HOME/.emacs.d
     else
 	git -C $HOME/.emacs.d pull
+    fi
+
+    mkdir -p $HOME/.emacs.d/bin/
+    if [ ! -e "$HOME/.emacs.d/bin/pychecker.sh" ]; then
+	curl https://raw.githubusercontent.com/reinout/tools/f8d84f043e53c1dfc1e452cfaf00d3f831c9af7e/shell/pychecker.sh > $HOME/.emacs.d/bin/pychecker.sh
+	chmod +x $HOME/.emacs.d/bin/pychecker.sh
     fi
 
     emacs --script $HOME/.emacs.d/init.el
