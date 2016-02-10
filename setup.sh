@@ -14,6 +14,7 @@ no_docker=0
 
 required_packages=(
     python-software-properties
+    software-properties-common
     ca-certificates
     apt-transport-https
     wget 
