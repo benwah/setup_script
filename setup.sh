@@ -166,7 +166,7 @@ get_emacs_config() {
     mkdir -p $HOME/.emacs.d/bin/
 
     if [ ! -e "$HOME/.emacs.d/bin/pychecker.sh" ]; then
-	curl https://raw.githubusercontent.com/reinout/tools/f8d84f043e53c1dfc1e452cfaf00d3f831c9af7e/shell/pychecker.sh > $HOME/.emacs.d/bin/pycheckr
+	curl https://raw.githubusercontent.com/reinout/tools/f8d84f043e53c1dfc1e452cfaf00d3f831c9af7e/shell/pychecker.sh > $HOME/.emacs.d/bin/pychecker.sh
 	chmod +x $HOME/.emacs.d/bin/pychecker.sh
     fi
 
