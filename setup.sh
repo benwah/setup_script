@@ -108,6 +108,13 @@ install_dwm() {
     fi
     cd $SETUP_DIR/dwm && make && sudo make install && cd $SETUP_DIR
     sudo ln -sf $SETUP_DIR/config/dwm.desktop /usr/share/xsessions/dwm.desktop
+
+    if [ ! -d "dmenu" ]; then
+	git clone git://git.suckless.org/dmenu
+    else
+	git -C $SETUP_DIR/dmenu pull
+    fi
+    cd $SETUP_DIR/dmenu && make && sudo make install && cd $SETUP_DIR
 }
 
 install_lilyterm() {
