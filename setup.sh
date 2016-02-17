@@ -106,7 +106,7 @@ install_packages() {
 
 install_dwm() {
     if [ ! -d "dwm" ]; then
-	git clone https://github.com/benwah/dwm.git ./dwm
+	git clone https://github.com/benwah/dwm.git $SETUP_DIR/dwm
     else
 	git -C $SETUP_DIR/dwm pull
     fi
