@@ -11,6 +11,7 @@ On a new system:
 TODO:
 -----
 
-* [ ] Make lilyterm available to update-alternatives, make principal alternative
-* [ ] Make emacs default editor
-* [ ] Install chrome, make default browser
+* [ ] Make lilyterm available to update-alternatives, make principal alternative.
+* [ ] Make emacs default editor.
+* [ ] Install chrome, make default browser.
+* [ ] Set-up keyboard layout switcher.

@@ -54,6 +54,7 @@ base_packages=(
     silversearcher-ag 
 )
 x_packages=(
+    emacs24 
     fonts-inconsolata 
     libcanberra-gtk-module
     libgtk-3-dev 
@@ -61,8 +62,9 @@ x_packages=(
     libxft-dev 
     libxinerama-dev 
     libvte-dev 
+    slock
+    slim
     ttf-mscorefonts-installer
-    emacs24 
 )
 no_x_packages=(
     emacs24-nox
